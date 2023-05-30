@@ -1,0 +1,11 @@
+<template>
+  <button v-on="$listeners" class="ppbutton border border-white rounded px-2 py-1">
+    <slot/>
+  </button>
+</template>
+
+<style>
+.ppbutton {
+
+}
+</style>
