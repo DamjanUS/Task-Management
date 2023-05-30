@@ -14,7 +14,9 @@
 
       >
       </all-tasks>
- <PButton @formT="">+Add new task</PButton>
+ <newTask @formT="">    
+ <PButton>+Add new task</PButton>
+</newTask> 
     </draggable>
    
   </div>
@@ -25,6 +27,7 @@ import allTasks from "@/components/allTasks.vue";
 import _ from "lodash";
 import draggable from "vuedraggable";
 import PButton from "@/components/PButton.vue"
+import newTask from "@/components/newTask.vue"
 export default {
   props: {
     category: Object,
@@ -45,7 +48,8 @@ export default {
   components: {
     allTasks,
     draggable,
-    PButton
+    PButton,
+    newTask
   },
 };
 </script>

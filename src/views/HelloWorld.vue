@@ -18,7 +18,7 @@
 
 <script>
 import draggable from "vuedraggable";
-import taskCategory from "./taskCategory.vue";
+import taskCategory from '@/components/taskCategory.vue'
 
 export default {
   data() {
