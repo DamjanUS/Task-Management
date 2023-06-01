@@ -5,7 +5,7 @@
         v-for="category in taskCategories"
         :key="category.id"
         :category="category"
-        @dragged="
+        @input="
           (event) => {
             category.tasks = event;
           }
@@ -13,14 +13,22 @@
       >
       </taskCategory>
     </draggable>
+    <PButton style="padding: 5px; border: 2px solid black;" @click="storeData()">Storage</PButton>
   </div>
 </template>
 
 <script>
 import draggable from "vuedraggable";
 import taskCategory from '@/components/taskCategory.vue'
+import PButton from '@/components/PButton.vue'
 
 export default {
+  mounted(){
+    const myJSONTwo = JSON.parse(localStorage.getItem('storeArray1'))
+    if(myJSONTwo == null) return;
+    this.taskCategories = myJSONTwo
+    
+  },
   data() {
     return {
       available: true,
@@ -78,11 +86,16 @@ export default {
   props: {
     msg: String,
   },
-  methods: {},
+  methods: {
+    storeData() {
+      const myJSON = JSON.stringify(this.taskCategories)  
+      localStorage.setItem("storeArray1",myJSON)
+    }
+  },
   components: {
-    // AllTasks,
     draggable,
     taskCategory,
+    PButton
   },
 };
 </script>

@@ -6,14 +6,12 @@
         <br>
         <br>
         <button style="border: 2px black solid; padding: 3px; margin-right: 5px;" @click="storeData()">Write</button>
-        <button style="border: 2px black solid; padding: 3px;">Read</button>
     </div>
 </template>
 
 <script>
 export default {
     mounted(){
-            console.log('App Mounted') 
             this.inputValue = localStorage.getItem('text.id')
         },
     data() {

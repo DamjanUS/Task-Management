@@ -1,7 +1,7 @@
 <template>
   <div class="category-tasks">
     <div class="fontSizeT">{{ category.name }}</div>
-    <draggable :value="category.tasks" @input="categoryT($event)">
+    <draggable :value="category.tasks" @input="onDragged($event)" >
       <all-tasks
         v-for="task in sortTask"
         :key="task.id"
@@ -11,12 +11,10 @@
             task.completed = event;
           }
         "
-
       >
-      </all-tasks>
- <newTask @formT="">    
- <PButton>+Add new task</PButton>
-</newTask> 
+      </all-tasks>   
+      <newTask @formT="onAdded($event)"></newTask>
+       
     </draggable>
    
   </div>
@@ -26,16 +24,20 @@
 import allTasks from "@/components/allTasks.vue";
 import _ from "lodash";
 import draggable from "vuedraggable";
-import PButton from "@/components/PButton.vue"
 import newTask from "@/components/newTask.vue"
 export default {
   props: {
     category: Object,
   },
   methods: {
-    categoryT(categoryTasks) {
-      this.$emit("dragged", categoryTasks);
+    onDragged(categoryTasks) {
+      this.$emit("input", categoryTasks);
     },
+    onAdded(newT){
+      let allTasks = this.category.tasks.concat(newT)
+      this.$emit("input",allTasks)
+      
+    }
   },
   computed: {
     sortTask: {
@@ -48,7 +50,6 @@ export default {
   components: {
     allTasks,
     draggable,
-    PButton,
     newTask
   },
 };
